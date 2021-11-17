@@ -27,11 +27,9 @@ public class CategoriaResource {
 
 	@GetMapping()
 	public ResponseEntity<List<Categoria>> findAll() {
-		List<Categoria> list = categoriaService.findAll();
-		return ResponseEntity.ok().body(list);
+		List<Categoria> lista = categoriaService.findAll();
+		return ResponseEntity.ok().body(lista);
 	}
-	
-	
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Categoria> findById(@PathVariable Long id) {
@@ -39,15 +37,11 @@ public class CategoriaResource {
 		Categoria obj = categoriaService.finById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Categoria> insert(@RequestBody Categoria obj) {
 		obj = categoriaService.insert(obj);
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(obj.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
 
@@ -60,11 +54,7 @@ public class CategoriaResource {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria obj) {
 		obj = categoriaService.update(id, obj);
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(obj.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 
 	}
