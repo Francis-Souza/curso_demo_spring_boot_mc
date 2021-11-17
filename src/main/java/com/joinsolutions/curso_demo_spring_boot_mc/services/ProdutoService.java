@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Produto;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.resources.exceptions.ResourceNotFoundException;
+import com.joinsolutions.curso_demo_spring_boot_mc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ProdutoService {
@@ -26,7 +27,10 @@ public class ProdutoService {
 
 	public Produto finById(Long id) {
 		Optional<Produto> obj = produtoRepository.findById(id);
-		return obj.orElseThrow();
+		if ( obj.isEmpty()) {
+			throw new ObjectNotFoundException("Objeto não encontrado no banco! Id: " + id + ", tipo: " + Produto.class.getName());			
+		}
+		return obj.get();
 	}
 	
 	public Produto insert(Produto obj) {
@@ -53,5 +57,6 @@ public class ProdutoService {
 
 	public void updateData(Produto produto, Produto obj) {
 		produto.setNome(obj.getNome());
+		produto.setPreco(obj.getPreco());
 	}
 }

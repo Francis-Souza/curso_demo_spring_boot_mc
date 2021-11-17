@@ -8,8 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Categoria;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cidade;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.Estado;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Produto;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CategoriaRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CidadeRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EstadoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
 
 @Configuration
@@ -22,6 +26,12 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 
 	
 	//	@Autowired
@@ -79,6 +89,23 @@ public class TestConfig implements CommandLineRunner {
 		p7.getCategorias().add(cat2);
 		
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7));
+		
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		
+		estadoRepository.saveAll(Arrays.asList(est1,est2));
+		
+		
+		Cidade c1 = new Cidade(null, "Uberlândia", est1);
+		Cidade c2 = new Cidade(null, "Louveira", est2);
+		Cidade c3 = new Cidade(null, "Campinas", est2);
+		
+		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+		
+		
+		
 		
 		
 //		userRepository.saveAll(Arrays.asList(u1, u2));
