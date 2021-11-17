@@ -27,7 +27,7 @@ public class Estado implements Serializable {
 	@NotNull
 	private String nome;
 	
-	@JsonBackReference
+	@JsonBackReference /*Preoteção cíclica Json*/
 	@OneToMany(mappedBy = "estado")
 	private Set<Cidade> cidades = new HashSet<>();
 
