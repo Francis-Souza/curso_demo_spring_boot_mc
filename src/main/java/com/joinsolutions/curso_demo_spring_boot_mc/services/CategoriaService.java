@@ -6,14 +6,13 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Categoria;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CategoriaRepository;
-import com.joinsolutions.curso_demo_spring_boot_mc.services.exceptions.DatabaseException;
-import com.joinsolutions.curso_demo_spring_boot_mc.services.exceptions.ResourceNotFoundException;
+import com.joinsolutions.curso_demo_spring_boot_mc.resources.exception.ResourceNotFoundException;
+import com.joinsolutions.curso_demo_spring_boot_mc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -27,8 +26,11 @@ public class CategoriaService {
 	}
 
 	public Categoria finById(Long id) {
-		Optional<Categoria> obj = categoriaRepository.findById(id);
-		return obj.orElse(null);
+		Optional<Categoria> obj = categoriaRepository.findById(id);		
+		if ( obj.isEmpty()) {
+			throw new ObjectNotFoundException("Objeto não encontrado no banco! Id: " + id + ", tipo: " + Categoria.class.getName());			
+		}
+		return obj.get();
 	}
 	
 	public Categoria insert(Categoria obj) {
@@ -40,9 +42,7 @@ public class CategoriaService {
 			categoriaRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new DatabaseException(e.getMessage());
-		}
+		} 
 	}
 	
 	public Categoria update(Long id, Categoria obj) {

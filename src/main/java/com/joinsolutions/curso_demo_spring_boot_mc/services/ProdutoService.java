@@ -6,14 +6,12 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Produto;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
-import com.joinsolutions.curso_demo_spring_boot_mc.services.exceptions.DatabaseException;
-import com.joinsolutions.curso_demo_spring_boot_mc.services.exceptions.ResourceNotFoundException;
+import com.joinsolutions.curso_demo_spring_boot_mc.resources.exception.ResourceNotFoundException;
 
 @Service
 public class ProdutoService {
@@ -28,7 +26,7 @@ public class ProdutoService {
 
 	public Produto finById(Long id) {
 		Optional<Produto> obj = produtoRepository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow();
 	}
 	
 	public Produto insert(Produto obj) {
@@ -40,9 +38,7 @@ public class ProdutoService {
 			produtoRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new DatabaseException(e.getMessage());
-		}
+		} 
 	}
 	
 	public Produto update(Long id, Produto obj) {
