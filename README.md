@@ -13,7 +13,7 @@ Desenvolvimento de um Pequeno Sistema de Vendas baseado em modelagem conceitual 
 🛑 Modelagem Conceitual
 </h2>
 
-<img src="file:///media/francislei/Dados/Cursos/udemy/curso_demo_spring_boot_mc/img/Modelagem_Conceitual.png"/>
+<img src="https://github.com/Francis-Souza/curso_demo_spring_boot_mc/blob/master/img/Modelagem_Conceitual.png"/>
 
 <br><br><br>
 
