@@ -33,18 +33,20 @@ public class Produto implements Serializable {
 	
 	/*====Associação de Chave Estrangeira M p/ M ===*/
 	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria",joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "tb_produto_categoria",
+						joinColumns = @JoinColumn(name = "produto_id"), 
+						inverseJoinColumns = @JoinColumn(name = "categoria_id")	)
 	private Set<Categoria> categorias =  new HashSet<>();
 	
 	
 	public Produto () {
 		
 	}
-	
-	public Produto(Long id, String nome, Double preco) {	
+
+	public Produto(Long id, @NotNull String nome, @NotNull Double preco) {		
 		this.id = id;
 		this.nome = nome;
-		this.preco = preco;
+		this.preco = preco;		
 	}
 
 	public Long getId() {
