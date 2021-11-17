@@ -19,7 +19,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Endereco;
 import com.joinsolutions.curso_demo_spring_boot_mc.services.EnderecoService;
 
 @RestController
-@RequestMapping("/Enderecos")
+@RequestMapping("/enderecos")
 public class EnderecoResource {
 
 	@Autowired

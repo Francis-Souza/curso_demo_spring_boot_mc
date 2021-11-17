@@ -19,7 +19,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Estado;
 import com.joinsolutions.curso_demo_spring_boot_mc.services.EstadoService;
 
 @RestController
-@RequestMapping("/Estados")
+@RequestMapping("/estados")
 public class EstadoResource {
 
 	@Autowired

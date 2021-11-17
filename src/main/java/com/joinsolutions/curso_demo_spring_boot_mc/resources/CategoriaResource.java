@@ -19,7 +19,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Categoria;
 import com.joinsolutions.curso_demo_spring_boot_mc.services.CategoriaService;
 
 @RestController
-@RequestMapping("/Categorias")
+@RequestMapping("/categorias")
 public class CategoriaResource {
 
 	@Autowired

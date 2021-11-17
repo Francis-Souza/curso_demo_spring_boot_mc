@@ -19,7 +19,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cliente;
 import com.joinsolutions.curso_demo_spring_boot_mc.services.ClienteService;
 
 @RestController
-@RequestMapping("/Clientes")
+@RequestMapping("/clientes")
 public class ClienteResource {
 
 	@Autowired

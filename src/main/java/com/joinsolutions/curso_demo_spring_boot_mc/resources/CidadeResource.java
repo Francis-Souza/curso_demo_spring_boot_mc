@@ -19,7 +19,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cidade;
 import com.joinsolutions.curso_demo_spring_boot_mc.services.CidadeService;
 
 @RestController
-@RequestMapping("/Cidades")
+@RequestMapping("/cidades")
 public class CidadeResource {
 
 	@Autowired
