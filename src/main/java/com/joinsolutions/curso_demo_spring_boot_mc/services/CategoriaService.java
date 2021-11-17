@@ -28,7 +28,7 @@ public class CategoriaService {
 
 	public Categoria finById(Long id) {
 		Optional<Categoria> obj = categoriaRepository.findById(id);
-		return obj.get();
+		return obj.orElse(null);
 	}
 	
 	public Categoria insert(Categoria obj) {
