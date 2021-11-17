@@ -39,7 +39,7 @@ public class Endereco implements Serializable {
 	@NotNull
 	private String cep;
 	
-	@JsonBackReference /*Preoteção cíclica Json*/
+	@JsonBackReference /*Proteção cíclica Json*/
 	@ManyToOne	
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

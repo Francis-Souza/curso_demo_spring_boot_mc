@@ -42,7 +42,7 @@ public class Cliente implements Serializable {
 	@Enumerated(EnumType.STRING) 
 	private TipoClienteEnum tipoClienteEnum;
 	
-	@JsonManagedReference /*Preoteção cíclica Json*/
+	@JsonManagedReference /*Proteção cíclica Json*/
 	@OneToMany(mappedBy = "cliente")
 	private Set<Endereco> enderecos = new HashSet<>();
 	
