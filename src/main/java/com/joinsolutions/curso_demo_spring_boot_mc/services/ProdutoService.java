@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Produto;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
-import com.joinsolutions.curso_demo_spring_boot_mc.resources.exception.ResourceNotFoundException;
+import com.joinsolutions.curso_demo_spring_boot_mc.resources.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProdutoService {

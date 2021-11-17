@@ -1,4 +1,4 @@
-package com.joinsolutions.curso_demo_spring_boot_mc.resources.exception;
+package com.joinsolutions.curso_demo_spring_boot_mc.resources.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 
