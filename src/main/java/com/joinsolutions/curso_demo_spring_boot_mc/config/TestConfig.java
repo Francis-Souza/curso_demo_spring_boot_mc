@@ -9,10 +9,15 @@ import org.springframework.context.annotation.Profile;
 
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Categoria;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cidade;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cliente;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.Endereco;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Estado;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Produto;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.enums.TipoClienteEnum;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CategoriaRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CidadeRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ClienteRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EnderecoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EstadoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
 
@@ -32,6 +37,14 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+
 
 	
 	//	@Autowired
@@ -104,6 +117,28 @@ public class TestConfig implements CommandLineRunner {
 		
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 		
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@Gmail.com", "151.555.666-53", TipoClienteEnum.PESSOAFISICA);
+		Cliente cli2 = new Cliente(null, "João Costa e Silva", "joao@Gmail.com", "651.336.966-53", TipoClienteEnum.PESSOAFISICA);
+		Cliente cli3 = new Cliente(null, "Pedro Souza e Silva", "pedro@Gmail.com", "251.445.666-53", TipoClienteEnum.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("143335-2560","215555-9544"));
+		cli2.getTelefones().addAll(Arrays.asList("123335-2560","115555-9544"));
+		cli3.getTelefones().addAll(Arrays.asList("153335-2560","8515555-9544"));
+		
+		Endereco end1 = new Endereco(null, "Rua Flores", "150", "Apto 301", "Jardim", "38400001", cli1, c1);
+		Endereco end2 = new Endereco(null, "Rua Flores Cunha", "300", "Apto 501", "Flores", "39400001", cli2, c2);		
+		Endereco end3 = new Endereco(null, "Rua Flores Verdes", "400", "Apto 601", "Palmares", "36400001", cli3, c2);
+		Endereco end4 = new Endereco(null, "Rua Ipe Verde", "200", "Apto 101", "Palmares", "36400001", cli3, c3);
+		
+		
+		cli1.getEnderecos().addAll(Arrays.asList(end1));
+		cli2.getEnderecos().addAll(Arrays.asList(end2));
+		cli3.getEnderecos().addAll(Arrays.asList(end3,end4));		
+		
+		clienteRepository.saveAll(Arrays.asList(cli1,cli2, cli3));
+		enderecoRepository.saveAll(Arrays.asList(end1,end2,end3,end4));
+			
 		
 		
 		
