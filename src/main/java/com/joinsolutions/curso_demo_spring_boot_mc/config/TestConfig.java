@@ -1,5 +1,6 @@
 package com.joinsolutions.curso_demo_spring_boot_mc.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cidade;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cliente;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Endereco;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Estado;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.Pagamento;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.PagamentoComBoleto;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.PagamentoComCartao;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.Pedido;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Produto;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.enums.EstadoPagamentoEnum;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.enums.TipoClienteEnum;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CategoriaRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CidadeRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ClienteRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EnderecoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EstadoRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.PagamentoRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.PedidoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
 
 @Configuration
@@ -44,6 +52,13 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
 
 
 	
@@ -67,10 +82,7 @@ public class TestConfig implements CommandLineRunner {
 //		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");	
 //		
 //		
-//		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.DELIVERED, u1);
-//		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.PAID, u2);
-//		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.CANCELED, u1);
-//		
+
 
 		
 		Categoria cat1 = new Categoria(null, "Electronics");
@@ -139,6 +151,30 @@ public class TestConfig implements CommandLineRunner {
 		clienteRepository.saveAll(Arrays.asList(cli1,cli2, cli3));
 		enderecoRepository.saveAll(Arrays.asList(end1,end2,end3,end4));
 			
+		Pedido ped1 = new Pedido(null, Instant.parse("2019-06-20T19:53:07Z"), cli1, end1);
+		Pedido ped2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), cli1, end2);
+		
+		
+		
+		/* Pagamente de uma Pedido */
+		Pagamento pag1 = new PagamentoComCartao(null,EstadoPagamentoEnum.QUITADO, ped1, 6);		
+		ped1.setPagamento(pag1);
+		 
+		
+		Pagamento pag2 = new PagamentoComBoleto(null,EstadoPagamentoEnum.PENDENTE,ped2,null, Instant.parse("2017-10-20T19:53:07Z"));		
+		ped2.setPagamento(pag2);
+		
+		
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		
+		
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
+		
+		
+
+		
+		
 		
 		
 		

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -15,7 +17,8 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.enums.EstadoPagament
 
 @Entity
 @Table(name = "tb_pagamento")
-public class Pagamento implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pagamento implements Serializable {
 	
 
 	private static final long serialVersionUID = 1L;

@@ -2,8 +2,14 @@ package com.joinsolutions.curso_demo_spring_boot_mc.entities;
 
 import java.time.Instant;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.enums.EstadoPagamentoEnum;
 
+
+@Entity
+@Table(name = "tb_pagamento_com_boleto")
 public class PagamentoComBoleto extends Pagamento {
 	
 	
