@@ -4,5 +4,4 @@ public enum EstadoPagamentoEnum {
 	QUITADO,
 	PENDENTE,
 	CANCELADO
-
 }

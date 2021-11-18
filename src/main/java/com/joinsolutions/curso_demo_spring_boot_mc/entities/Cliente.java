@@ -53,6 +53,8 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "tb_telefone")
 	private Set<String> telefones = new HashSet<>();
 	
+	private Set<Pedido> pedidos = new HashSet<>();
+	
 	
 	public Cliente() {
 		
@@ -133,6 +135,16 @@ public class Cliente implements Serializable {
 	public Set<Endereco> getEnderecos() {
 		return enderecos;
 	}
+	
+	
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 
 	@Override
@@ -160,6 +172,9 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
+
+
+
 
 
 
