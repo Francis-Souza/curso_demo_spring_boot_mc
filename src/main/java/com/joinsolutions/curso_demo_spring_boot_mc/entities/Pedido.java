@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -42,11 +41,11 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
 	
-	@JsonManagedReference
+	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")	
 	private Pagamento pagamento;
 	
-	@JsonManagedReference
+	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -142,12 +141,8 @@ public class Pedido implements Serializable {
 	public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
-
 	
 	
-	
-
-
 	public Double getTotal() {		 
 		double sum = 0.00;
 		for(ItemPedido x : itens ) {
@@ -181,7 +176,5 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }

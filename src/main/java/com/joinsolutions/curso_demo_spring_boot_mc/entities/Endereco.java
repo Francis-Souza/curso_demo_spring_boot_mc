@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -39,7 +39,7 @@ public class Endereco implements Serializable {
 	@NotNull
 	private String cep;
 	
-	@JsonBackReference /*Proteção cíclica Json*/
+	@JsonIgnore
 	@ManyToOne	
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

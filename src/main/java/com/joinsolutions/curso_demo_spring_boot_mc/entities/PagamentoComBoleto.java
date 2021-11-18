@@ -44,15 +44,5 @@ public class PagamentoComBoleto extends Pagamento {
 		this.dataVencimento = dataVencimento;
 	}
 	
-	
-
-
-
-
-	
-	
-
-	
-	
 }
 

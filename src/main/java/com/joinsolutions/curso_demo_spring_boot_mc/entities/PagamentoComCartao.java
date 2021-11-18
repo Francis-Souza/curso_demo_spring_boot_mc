@@ -34,5 +34,4 @@ public class PagamentoComCartao extends Pagamento {
 	}
 	
 	
-	
 }
