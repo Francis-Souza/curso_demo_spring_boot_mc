@@ -13,6 +13,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cidade;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Cliente;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Endereco;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Estado;
+import com.joinsolutions.curso_demo_spring_boot_mc.entities.ItemPedido;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.Pagamento;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.PagamentoComBoleto;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.joinsolutions.curso_demo_spring_boot_mc.repositories.CidadeRepository
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ClienteRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EnderecoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.EstadoRepository;
+import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ItemPedidoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.PagamentoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.PedidoRepository;
 import com.joinsolutions.curso_demo_spring_boot_mc.repositories.ProdutoRepository;
@@ -59,6 +61,12 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+
 
 
 	
@@ -172,24 +180,23 @@ public class TestConfig implements CommandLineRunner {
 		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
 		
 		
-
+		ItemPedido ip1 = new ItemPedido(ped1,p1,0.00,1,2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1,p2,0.00,2,80.00);
+		ItemPedido ip3 = new ItemPedido(ped2,p2,100.00,1,800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
 		
 		
 		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
 		
 		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 		
-//		userRepository.saveAll(Arrays.asList(u1, u2));
-//		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
-		
-//		
-//		OrderItem oi1 = new OrderItem(o1,p1,2,p1.getPrice());
-//		OrderItem oi2 = new OrderItem(o1,p3,1,p3.getPrice());
-//		OrderItem oi3 = new OrderItem(o2,p3,2,p3.getPrice());
-//		OrderItem oi4 = new OrderItem(o3,p5,2,p5.getPrice());	 
-//		
-//		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
-//				
+				
 //		/* Pagamente de uma ordem */
 //		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), o1);
 //		o1.setPayment(pay1);

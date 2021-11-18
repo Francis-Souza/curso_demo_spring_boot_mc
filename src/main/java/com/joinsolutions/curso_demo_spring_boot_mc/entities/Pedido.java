@@ -141,6 +141,9 @@ public class Pedido implements Serializable {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
+	
+	
+	
 
 
 	public Double getTotal() {		 

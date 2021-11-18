@@ -42,7 +42,7 @@ public class Produto implements Serializable {
 	private Set<Categoria> categorias =  new HashSet<>();
 	
 	
-	/*Associação com tabela OrderItem*/
+	/*Associação com tabela ItemPedido*/
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
 	
@@ -86,14 +86,21 @@ public class Produto implements Serializable {
 	}
 	
 	
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
 	@JsonIgnore 
-	public Set<Pedido> getPedidos() {
-		
-		Set<Pedido> set = new HashSet<>();
+	public Set<Pedido> getPedidos() {		
+		Set<Pedido> listaPedidos = new HashSet<>();
 		for (ItemPedido x : itens) {
-			set.add(x.getPedido());
+			listaPedidos.add(x.getPedido());
 		}
-		return set;
+		return listaPedidos;
 	}
 	
 

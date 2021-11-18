@@ -30,14 +30,6 @@ public ItemPedidoPK() {
 	
 }
 
-
-public ItemPedidoPK(Produto produto, Pedido pedido) {
-	super();
-	this.produto = produto;
-	this.pedido = pedido;
-}
-
-
 public Produto getProduto() {
 	return produto;
 }
