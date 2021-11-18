@@ -16,7 +16,7 @@ public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();	
 
@@ -45,7 +45,7 @@ public class ItemPedido implements Serializable {
 	}
 
 
-	/*Getter e Setter inseridos manualmente tabela de detalhe( ligação Order e OrderItem)*/
+	/*Getter e Setter inseridos manualmente tabela de detalhe( ligação Pedido e ItemPedido)*/
 	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
@@ -56,6 +56,7 @@ public class ItemPedido implements Serializable {
 	}
 		
 
+	
 	public Produto getProduto() {
 		return id.getProduto();
 	}

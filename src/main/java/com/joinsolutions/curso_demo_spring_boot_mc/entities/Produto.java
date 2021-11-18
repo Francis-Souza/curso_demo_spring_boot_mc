@@ -43,6 +43,7 @@ public class Produto implements Serializable {
 	
 	
 	/*Associação com tabela ItemPedido*/
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
 	

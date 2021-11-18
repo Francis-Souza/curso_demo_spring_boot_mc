@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.joinsolutions.curso_demo_spring_boot_mc.entities.enums.TipoClienteEnum;
 
@@ -53,7 +54,7 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "tb_telefone")
 	private Set<String> telefones = new HashSet<>();
 	
-	
+	@JsonBackReference
 	@OneToMany(mappedBy = "cliente")
 	private Set<Pedido> pedidos = new HashSet<>();
 	

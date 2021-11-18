@@ -30,6 +30,7 @@ public ItemPedidoPK() {
 	
 }
 
+
 public Produto getProduto() {
 	return produto;
 }
@@ -38,7 +39,6 @@ public Produto getProduto() {
 public void setProduto(Produto produto) {
 	this.produto = produto;
 }
-
 
 public Pedido getPedido() {
 	return pedido;
