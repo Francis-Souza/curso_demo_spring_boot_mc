@@ -98,8 +98,9 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat3 = new Categoria(null, "Computers");
 		Categoria cat4 = new Categoria(null, "Tvs");
 		Categoria cat5 = new Categoria(null, "Instrumentos Musicais");
+		Categoria cat6 = new Categoria(null, "Produtos Perecíveis");
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5, cat6));
 		
 		Produto p1 = new Produto(null,"Impressosa HP",1190.5);
 		Produto p2 = new Produto(null,"Smart TV 46 polegadas", 3190.0);
