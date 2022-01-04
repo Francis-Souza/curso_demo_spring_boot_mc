@@ -29,9 +29,11 @@ public class Categoria implements Serializable {
 	@NotNull
 	private String nome;
 	
+	/* ====Associação de Chave Estrangeira M p/ M === */
 	@JsonIgnore
 	@ManyToMany(mappedBy = "categorias")	
 	private Set<Produto> produtos = new HashSet<>();
+	
 	
 	public Categoria() {
 		

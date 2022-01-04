@@ -44,8 +44,7 @@ public class Cliente implements Serializable {
 	
 	
 	@OneToMany(mappedBy = "cliente")
-	private Set<Endereco> enderecos = new HashSet<>();
-	
+	private Set<Endereco> enderecos = new HashSet<>();	
 	
 	
 	/*Cria tabela fraca no banco de dados*/
